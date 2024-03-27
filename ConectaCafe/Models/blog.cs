@@ -23,4 +23,6 @@ public class Blog
 
    [Display(Name = "Data de Cadastro")]
     public DateTime DataBlog { get; set; }
+
+    public ICollection<BlogTag> BlogTags { get; set; }
 }
