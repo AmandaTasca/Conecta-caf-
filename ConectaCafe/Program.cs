@@ -1,7 +1,13 @@
+using ConectaCafe.Data;
+using Microsoft.EntityFrameWorkCore;
+    
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+string conexao = builder.Configuration.GetConnectionString("CafeDb");
+  builder.Services.AddDbContext<AppDbContext> (opt => opt.UseSqlServer(Conexao));
 
 var app = builder.Build();
 
