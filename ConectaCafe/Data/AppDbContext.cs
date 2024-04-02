@@ -29,12 +29,12 @@ public class AppDbContext : DbContext
         builder.Entity<BlogTag>()
             .HasOne(bt => bt.Blog)
             .WithMany(b => b.BlogTags)
-            .HasForeignkey(bt => bt.BlogId);
+            .HasForeignKey(bt => bt.BlogId);
 
         builder.Entity<BlogTag>()
            .HasOne(bt => bt.Tag)
            .WithMany(t => t.BlogTags)
-           .HasForeignkey(bt => bt.TagId);
+           .HasForeignKey(bt => bt.TagId);
 
             #endregion
     }
