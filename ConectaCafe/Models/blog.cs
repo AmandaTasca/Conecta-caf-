@@ -7,7 +7,7 @@ namespace ConectaCafe.Models;
 public class Blog
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.None)]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
      
      [Required(ErrorMessage = "Por Favor, Informe o titulo")]
