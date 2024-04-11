@@ -10,12 +10,12 @@ public class Blog
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
      
-     [Required(ErrorMessage = "Por Favor, Informe o titulo")]
-     [StringLength(100, ErrorMessage = " O titulo deve possuir no máximo 100 caracteres")]
+     [Required(ErrorMessage = "Por favor, Informe o titulo.")]
+     [StringLength(100, ErrorMessage = "O titulo deve possuir no máximo 100 caracteres")]
     public string Titulo { get; set; }
 
-     [Required(ErrorMessage = "Por Favor, Informe o Texto ")]
-     [StringLength(500, ErrorMessage = " O titulo deve possuir no máximo 500 caracteres")]
+     [Required(ErrorMessage = "Por favor, Informe o texto. ")]
+     [StringLength(500, ErrorMessage = "O texto deve possuir no máximo 500 caracteres")]
     public string Texto { get; set; }
 
     [StringLength(200)]
