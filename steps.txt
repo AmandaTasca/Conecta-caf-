@@ -12,3 +12,11 @@ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 7.
 dotnet-aspnet-codegenerator controller -name CategoriasController -m Categoria -dc AppDbContext -outDir Controllers -udl
 
 
+
+~15/04
+
+dotnet-aspnet-codegenerator controller -name ProdutosController -m Produto -dc AppDbContext -outDir Controllers -l "~/Views/Shared/_LayoutAdmin.cshtml"
+ 
+ Entrar na pasta do projeto:  cd .\ConectaCafe\
+ Rodar o projeto: dotnet watch run 
+ Limpar terminal: cls
