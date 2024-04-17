@@ -8,15 +8,18 @@ using Microsoft.EntityFrameworkCore;
 using ConectaCafe.Data;
 using ConectaCafe.Models;
 
+
 namespace ConectaCafe.Controllers
 {
     public class ProdutosController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly IWebHostEnvironment _host;
 
-        public ProdutosController(AppDbContext context)
+        public ProdutosController(AppDbContext context, IWebHostEnvironment host)
         {
             _context = context;
+           _host = host; 
         }
 
         // GET: Produtos
@@ -57,12 +60,24 @@ namespace ConectaCafe.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Descricao,Preco,Foto,CategoriaId")] Produto produto)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Descricao,Preco,Foto,CategoriaId")] Produto produto, IFormFile Arquivo)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(produto);
                 await _context.SaveChangesAsync();
+
+                if ( Arquivo != null)
+                {
+                  string filename = produto.Id + Path.GetExtension(Arquivo.FileName);
+                  string caminho = Path.Combine(_host.WebRootPath, "img\\produtos");
+                  string novoArquivo = Path.Combine(caminho, filename);
+                  using (var stream = new FileStream(novoArquivo, FileMode.Create)) 
+                  {
+                    
+                  }
+                }
+
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Nome", produto.CategoriaId);

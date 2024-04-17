@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="card-body pb-2">
-                <form asp-action="Create" class="row">
+                <form asp-action="Create" class="row" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                     <div class="col-lg-8 col-md-9">
@@ -55,9 +55,9 @@
                     </div>
 
                     <div class="col-lg-4 col-md-3 d-flex justify-content-center"> @*foto*@
-                     <img src="~/img/sem-foto.jpg" class="w-95" alt="Foto" onclick="changeImage()">
-                     <input type="hidden" asp-for="Foto">
-                     <input type="file"  id="Arquivo" name="Arquivo" accept=".jpg,.jpeg,.png,.gif,.jfif" hidden>
+                        <img id="Preview" src="~/img/sem-foto.jpg" class="w-95" alt="Foto" onclick="changeImage()">
+                        <input type="hidden" asp-for="Foto">
+                        <input type="file" id="Arquivo" name="Arquivo" accept=".jpg,.jpeg,.png,.gif,.jfif" hidden>
                     </div>
 
 
@@ -74,9 +74,21 @@
 
 @section Scripts {
     <script>
-        function changeImage () {
+        function changeImage() {
             document.querySelector("input[type='file']").click();
         }
+
+        window.addEventListener('load', function () {
+            document.querySelector("input[type='file']")
+                .addEventListener('change', function () {
+                    if (this.files && this.files[0]) {
+                        var img = document.getElementById("Preview");
+                        img.src = URL.createObjectURL(this.files[0]);
+                    }
+                });
+        })
+
+
 
     </script>
 }

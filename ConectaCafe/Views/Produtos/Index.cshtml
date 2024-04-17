@@ -21,11 +21,11 @@
                     <table id="dataTable" class="table align-items-center justify-content-center mb-0 w-100">
                         <thead>
                             <tr>
-                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7"> Nome
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 "> Nome
                                 </th>
                                 <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7"> Categoria
                                 </th>
-                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7"> Preço
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 text-start"> Preço
                                 </th>
                                 <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">
                                     Ações</th>
@@ -41,7 +41,7 @@
                                     <td class="text-dark text-sm">
                                       @Html.DisplayFor(modelItem => item.Categoria.Nome)
                                     </td>
-                                    <td class="text-dark text-sm">
+                                    <td class="text-dark text-sm text-start">
                                        @Html.DisplayFor(modelItem => item.Preco)
                                     </td>
                                     <td>
