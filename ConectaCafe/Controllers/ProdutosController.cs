@@ -74,8 +74,10 @@ namespace ConectaCafe.Controllers
                   string novoArquivo = Path.Combine(caminho, filename);
                   using (var stream = new FileStream(novoArquivo, FileMode.Create)) 
                   {
-                    
+                    Arquivo.CopyTo(stream);
                   }
+                  produto.Foto = "\\img\\produtos\\" + filename;
+                  await _context.SaveChangesAsync();
                 }
 
                 return RedirectToAction(nameof(Index));
@@ -106,7 +108,7 @@ namespace ConectaCafe.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Descricao,Preco,Foto,CategoriaId")] Produto produto)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Descricao,Preco,Foto,CategoriaId")] Produto produto, IFormFile Arquivo)
         {
             if (id != produto.Id)
             {
@@ -117,8 +119,20 @@ namespace ConectaCafe.Controllers
             {
                 try
                 {
-                    _context.Update(produto);
-                    await _context.SaveChangesAsync();
+                    if ( Arquivo != null)
+                   {
+                        string filename = produto.Id + Path.GetExtension(Arquivo.FileName);
+                        string caminho = Path.Combine(_host.WebRootPath, "img\\produtos");
+                        string novoArquivo = Path.Combine(caminho, filename);
+                        using (var stream = new FileStream(novoArquivo, FileMode.Create)) 
+                        {
+                            Arquivo.CopyTo(stream);
+                        }
+                        produto.Foto = "\\img\\produtos\\" + filename;
+                        
+                    }
+                        _context.Update(produto);
+                        await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
