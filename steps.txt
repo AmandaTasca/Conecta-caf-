@@ -20,3 +20,7 @@ dotnet-aspnet-codegenerator controller -name ProdutosController -m Produto -dc A
  Entrar na pasta do projeto:  cd .\ConectaCafe\
  Rodar o projeto: dotnet watch run 
  Limpar terminal: cls
+
+ ~22/04
+ dotnet-aspnet-codegenerator controller -name AvaliacoesController -m Avaliacao -dc AppDbContext -outDir Controllers -l "~/Views/Shared/_LayoutAdmin.cshtml"
+ 
