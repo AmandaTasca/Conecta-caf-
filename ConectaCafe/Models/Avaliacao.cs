@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ConectaCafe.Models;
 
-[Table("Avaliação")]
+[Table("Avaliacao")]
 public class Avaliacao
 {
     [Key]
